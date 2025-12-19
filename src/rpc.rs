@@ -1,3 +1,1 @@
-fn main() {
-    println!("Hello from Rust");
-}
+// RPC logic will live here
