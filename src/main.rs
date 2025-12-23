@@ -35,8 +35,6 @@ fn main() {
 
     let _protocol = parse_protocol(&args.protocol);
 
-    // let protocol = parse_protocol(&args.protocol);
-
     let cmd = match (args.protocol.as_str(), args.method.as_str()) {
         ("tendermint", "status") => Command::Tendermint(TendermintMethod::Status),
         ("tendermint", "health") => Command::Tendermint(TendermintMethod::Health),

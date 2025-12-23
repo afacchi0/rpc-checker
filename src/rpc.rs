@@ -184,7 +184,6 @@ fn check_tendermint_block(rpc: &str, height: Option<u64>) -> CheckResult {
 fn check_ethereum_status(rpc: &str) -> CheckResult {
     let client = reqwest::blocking::Client::new();
 
-    // 1) eth_syncing
     let syncing_req = serde_json::json!({
         "jsonrpc": "2.0",
         "method": "eth_syncing",
@@ -221,7 +220,6 @@ fn check_ethereum_status(rpc: &str) -> CheckResult {
 
     let syncing = syncing_json["result"].is_object();
 
-    // 2) eth_blockNumber
     let block_req = serde_json::json!({
         "jsonrpc": "2.0",
         "method": "eth_blockNumber",
@@ -275,7 +273,6 @@ fn check_ethereum_status(rpc: &str) -> CheckResult {
 fn check_ethereum_health(rpc: &str) -> CheckResult {
     let client = reqwest::blocking::Client::new();
 
-    // Simple health probe: eth_chainId
     let req = serde_json::json!({
         "jsonrpc": "2.0",
         "method": "eth_chainId",
@@ -395,7 +392,6 @@ fn check_ethereum_block(rpc: &str, height: Option<u64>) -> CheckResult {
 fn check_bitcoin_status(rpc: &str) -> CheckResult {
     let client = reqwest::blocking::Client::new();
 
-    // bitcoind JSON-RPC: getblockchaininfo
     let req = serde_json::json!({
         "jsonrpc": "1.0",
         "id": "rpc-checker",
@@ -466,7 +462,6 @@ fn check_bitcoin_status(rpc: &str) -> CheckResult {
 fn check_bitcoin_health(rpc: &str) -> CheckResult {
     let client = reqwest::blocking::Client::new();
 
-    // bitcoind JSON-RPC: getnetworkinfo
     let req = serde_json::json!({
         "jsonrpc": "1.0",
         "id": "rpc-checker",
@@ -593,7 +588,6 @@ fn check_bitcoin_block(rpc: &str, height: Option<u64>) -> CheckResult {
         }
     };
 
-    // 1) getblockhash
     let hash_req = serde_json::json!({
         "jsonrpc": "1.0",
         "id": "rpc-checker",
@@ -655,7 +649,6 @@ fn check_bitcoin_block(rpc: &str, height: Option<u64>) -> CheckResult {
         }
     };
 
-    // 2) getblockheader
     let header_req = serde_json::json!({
         "jsonrpc": "1.0",
         "id": "rpc-checker",
