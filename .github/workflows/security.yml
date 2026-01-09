@@ -1,0 +1,17 @@
+name: Security Scan
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    uses: afacchi0/security-workflows/.github/workflows/security-scan.yml@main
+    with:
+      languages: '["rust"]'
+      run_codeql: true
+    secrets: inherit
